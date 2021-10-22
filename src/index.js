@@ -3,6 +3,7 @@ import './sass/main.scss';
 import apiServiceImages from './js/apiService'
 import cardMarkup from './templates/imgcard.hbs'
 import debounce from 'lodash.debounce'
+import { onOpenModal } from './js/lightbox';
 
 
 const refs = {
@@ -14,6 +15,7 @@ const refs = {
 // refs.searchForm.addEventListener('submit', onSearch)
 refs.searchForm.addEventListener('input', debounce(onSearch, 500)),
 refs.loadMoreBtn.addEventListener('click', onLoadMore)
+refs.galeryList.addEventListener('click',onOpenModal)
 
 const search = new apiServiceImages
 
@@ -34,8 +36,11 @@ function markUP(images) {
     refs.galeryList.insertAdjacentHTML('beforeend',cardMarkup(images))
 }
 
-const element = document.getElementById('.loadbtn');
-element.scrollIntoView({
-  behavior: 'smooth',
-  block: 'end',
-});
+// const element = document.getElementById('loadbtn');
+// element.scrollIntoView({
+//     top: 0, 
+//     left: 0,
+//   behavior: 'smooth',
+//   block: 'end',
+// });
+
