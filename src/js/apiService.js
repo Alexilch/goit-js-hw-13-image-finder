@@ -13,7 +13,7 @@ const API_KEY = '23976074-1864ef446645d9fee251ba638'
       .then(({ hits }) => {
         this.pageNumber += 1;;
         return hits;
-      })
+      }) 
     }
 
     resetPage(){

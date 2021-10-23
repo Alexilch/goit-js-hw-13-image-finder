@@ -5,6 +5,9 @@ import cardMarkup from './templates/imgcard.hbs'
 import debounce from 'lodash.debounce'
 import { openModal } from './js/lightbox';
 
+import { error } from "@pnotify/core";
+import '@pnotify/core/dist/BrightTheme.css';
+import "@pnotify/core/dist/PNotify.css";
 
 const refs = {
     searchForm: document.querySelector('.search-form'),
@@ -24,22 +27,33 @@ function onSearch(event){
     search.query = refs.searchForm.elements.query.value;
     search.resetPage()
     refs.galeryList.innerHTML = ''
-    search.fetchImages().then(markUP)
+    
+    search.fetchImages().then(markUpFilter).catch(error)
 }
 
 function onLoadMore() {
     search.fetchImages()
-    .then(markUP)
+    .then(markUpFilter)
     .then( refs.galeryList.scrollIntoView({
         behavior: 'smooth',
         block: 'end'
       }))
-
 }
 
-function markUP(images) {
+function markUpFilter(images) {
+    // console.log(images.length);
+    if (images.length === 0) {
+            throw new error({
+                text: "Woops! Not Found!",
+                delay: 1500,
+              })
+        }
     refs.galeryList.insertAdjacentHTML('beforeend',cardMarkup(images))
 }
+
+
+
+
 
 // const element = document.getElementById('loadbtn');
 // element.scrollIntoView({
@@ -48,11 +62,6 @@ function markUP(images) {
 //   behavior: 'smooth',
 //   block: 'end',
 // });
-
-
-
-
-
 
 
 

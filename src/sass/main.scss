@@ -1,10 +1,4 @@
-/*
- * Главный файл стилей.
- * Все паршалы подключаются сюда.
- */
 
-// Стили для файла с примером HTML-фрагмента
-@import './example';
 body{
   background-color: #f0f0f0;
   margin-left: 15px;
@@ -21,7 +15,6 @@ img {
   }
 input[name="query"] {
   display: inline-block;
-  // box-sizing: border-box;
   width: 250px;
   height: 42px;
   padding: 0 20px;
@@ -46,6 +39,10 @@ input[name="query"] {
     transition: all 601ms ubic-bezier(0.4, 0, 0.2, 1);
   }
 }
+.header{
+  display: flex;
+  align-items: center;
+}
 .title{
  color: #414040;
  text-shadow: 3px -2px 3px rgba(65,63,63,0.65);
@@ -63,7 +60,7 @@ input[name="query"] {
   max-width: 300px;
   border-radius: 15px;
   overflow: hidden;
-  // object-fit: cover;
+  box-shadow: 10px 10px 28px 0px rgba(0,0,0,0.64);
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover{
     transform: scale(1.03);
